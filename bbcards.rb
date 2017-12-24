@@ -607,7 +607,7 @@ if not (ENV['REQUEST_URI']).nil?
 	cgi = CGI.new( :accept_charset => "UTF-8" )
 	
 	white_cards = cgi["whitecards"]
-	black_cards = cgi["blackcards"]
+	black_cards = cgi["whitecards"]
 	card_size   = cgi["cardsize"]
 	page_layout = cgi["pagelayout"]
 	icon = "default.png"
@@ -668,7 +668,8 @@ else
 	if args.has_key? "help" or args.length == 0 or ( (not args.has_key? "white") and (not args.has_key? "black") and (not args.has_key? "dir") )
 		print_help
 	elsif args.has_key? "dir"
-		render_cards args["dir"], "white.txt", "black.txt", "icon.png", "cards.pdf", false, true, true, card_geometry, "", "", false
+		
+		args["dir"], "white.txt", "black.txt", "icon.png", "cards.pdf", false, true, true, card_geometry, "", "", false
 	else
 		render_cards nil, args["white"], args["black"], args["icon"], args["output"], true, false, false, card_geometry, "", "", false
 	end
